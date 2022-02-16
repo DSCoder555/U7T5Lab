@@ -35,7 +35,8 @@ public class RepairSchedule
                 return false;
             }
         }
-        return true; // STUB VALUE
+        schedule.add(new CarRepair(m,b));
+        return true;
     }
 
     /** Returns an ArrayList containing the mechanic identifiers of all available mechanics,
@@ -46,10 +47,18 @@ public class RepairSchedule
         /* to be implemented in part (c) */
         ArrayList<Integer> mecNums = new ArrayList<Integer>();
         for (int i = 0; i < numberOfMechanics; i++) {
-            Integer integer =  mecNums.get(i);
+            boolean notFound = true;
+            for (CarRepair event: schedule) {
+                if (event.getMechanicNum() == i){
+                    notFound = false;
+                }
+            }
+            if (notFound){
+                mecNums.add(i);
+            }
 
         }
-        return null; // STUB VALUE
+        return mecNums; // STUB VALUE
     }
 
     /** Removes an element from schedule when a repair is complete. */
